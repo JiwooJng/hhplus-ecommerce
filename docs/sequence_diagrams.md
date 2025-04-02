@@ -16,7 +16,7 @@
 
 상품 조회
 
-![Image](https://github.com/user-attachments/assets/2e27ae26-51dc-449a-baf1-5a71b5aecbb9)
+![Image](https://github.com/user-attachments/assets/f56201f2-c4fa-46a0-b952-a1925711f97d)
 
 인기 상품 조회
 

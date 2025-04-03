@@ -47,7 +47,9 @@ erDiagram
     order {
         string order_id PK
         string user_id FK
-        long order_whole_price "전체 주문 금액"
+        long order_whole_amount "전체 주문 금액"
+        long discount_amount "할인 금액"
+        long total_amount "총 금액"
         date order_date
     }
     order_list {
@@ -60,7 +62,7 @@ erDiagram
     payment { 
         string payment_id PK
         string order_id FK
-        long pay_whole_price "전체 결제 금액"
+        long pay_whole_amount "전체 결제 금액"
         string pay_method "default: 포인트 결제"
         boolean pay_status "결제 상태(대기, 완료, 실패)"
         string fail_reason "실패 사유"
@@ -131,6 +133,8 @@ erDiagram
         string order_id PK
         string user_id FK
         long order_whole_price "전체 주문 총액"
+        long discount_amount "할인 금액"
+        long total_amount "총 금액"
         date order_date
     }
     order_list {
@@ -140,7 +144,15 @@ erDiagram
         long price "상품 가격"
         long whole_price "해당 상품 주문 총액"
     }
+    user_coupon {
+        string user_coupon_id PK
+        string user_id FK 
+        string coupon_id FK
+        date issued_date "발급 일시"
+        boolean used "사용 여부"
+    }
     order ||--|{order_list : contains
+    order ||--||user_coupon : use
 ```
 
 ## 결제 테이블
@@ -149,13 +161,15 @@ erDiagram
     order {
         string order_id PK
         string user_id FK
-        long order_whole_price "전체 주문 총액"
+        long order_whole_amount "전체 주문 총액"
+        long discount_amount "할인 금액"
+        long total_amount "총 금액"
         date order_date
     }
     payment { 
         string payment_id PK
         string order_id FK
-        long pay_whole_price "전체 결제 총액"
+        long pay_whole_amount "전체 결제 총액"
         string pay_method "default: 포인트 결제"
         boolean pay_status "결제 상태(대기, 완료, 실패)"
         string fail_reason "실패 사유"

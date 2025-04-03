@@ -77,7 +77,8 @@ erDiagram
     product ||--||prod_inventory : has
     product ||--o{prod_sales_history : history
     user||--o|user_coupon : receives 
-    coupon ||--o{user_coupon : issue 
+    coupon ||--o{user_coupon : issue
+    order ||--||user_coupon : use
 ```
 
 ## 유저 테이블 

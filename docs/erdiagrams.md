@@ -133,6 +133,7 @@ erDiagram
     order {
         string order_id PK
         string user_id FK
+        string user_coupon_id FK "사용하는 쿠폰"
         long order_whole_price "전체 주문 총액"
         long discount_amount "할인 금액"
         long total_amount "총 금액"

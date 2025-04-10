@@ -28,7 +28,7 @@
   <summary>충전</summary>
   <br>
   
-![chargpoint_param](https://github.com/user-attachments/assets/2ace2611-8bd8-4bb3-8cb8-a05e0479acfd)
+![chargpoint](https://github.com/user-attachments/assets/f130e477-a469-4ec3-a51a-731928b9cd68)
 
 ![chargepoint_request](https://github.com/user-attachments/assets/e5b8e6e9-5271-493e-b2fc-e50a718bf324)
 

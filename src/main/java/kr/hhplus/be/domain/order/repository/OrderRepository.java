@@ -4,6 +4,6 @@ import kr.hhplus.be.domain.order.entity.Order;
 
 public interface OrderRepository {
     Order save(Order order);
-    Order findByUserId(Long userId);
+    Order findByOrderId(Long orderId);
 
 }

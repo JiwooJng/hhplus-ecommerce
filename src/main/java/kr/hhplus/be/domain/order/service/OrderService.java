@@ -36,12 +36,18 @@ public class OrderService {
 
     // 주문 정보 조회
     public OrderDTO getOrderInfo(Long orderId) {
-        Order order = orderRepository.findByUserId(orderId);
+        Order order = orderRepository.findByOrderId(orderId);
         List<OrderList> orderLists = orderListRepository.findByOrderId(orderId);
 
         return new OrderDTO(order.getOrderId(), order.getUserId(), orderLists,
                             order.getOrderPrice(), order.getDiscountAmount(), order.getTotalPrice());
 
+    }
+
+    public void completeOrder(Long orderId) {
+        Order order = orderRepository.findByOrderId(orderId);
+        order.complete();
+        orderRepository.save(order);
     }
 
 

@@ -23,6 +23,7 @@ public class Order {
     private BigDecimal totalPrice;
 
     private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
 
     public static Order of(Long userId, Long userCouponId,  BigDecimal orderPrice, BigDecimal discountAmount, BigDecimal totalPrice, OrderStatus status) {
         Order order = new Order();
@@ -40,4 +41,8 @@ public class Order {
         return order;
     }
 
+    public void complete() {
+        this.status = OrderStatus.COMPLETE;
+        this.modifyDate = LocalDateTime.now();
+    }
 }

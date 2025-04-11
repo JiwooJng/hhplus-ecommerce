@@ -18,4 +18,11 @@ public class PaymentService {
 
         return paymentRepository.save(payment);
     }
+
+    public void completePay(Long payId) {
+        Payment payment = paymentRepository.findByPayId(payId);
+        payment.complete();;
+        paymentRepository.save(payment);
+    }
+
 }

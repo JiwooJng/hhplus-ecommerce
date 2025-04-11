@@ -24,7 +24,7 @@ public class Payment {
     private BigDecimal payAmount;
 
     private LocalDateTime createDate;
-
+    private LocalDateTime modifyDate;
 
     public static Payment create(Long orderId, BigDecimal payAmount) {
         Payment payment = new Payment();
@@ -37,6 +37,12 @@ public class Payment {
         payment.createDate = LocalDateTime.now();
 
         return payment;
+    }
+
+    public void complete() {
+        this.status = PaymentStatus.SUCCESS;
+        this.modifyDate = LocalDateTime.now();
+
     }
 }
 

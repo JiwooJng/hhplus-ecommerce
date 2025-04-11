@@ -32,13 +32,15 @@ public class UserCoupon {
         return userCoupon;
     }
 
-    public void use() {
+    public boolean use() {
         if (this.used) {
-            throw new RuntimeException();
+            return false;
         }
 
         this.usedDate = LocalDateTime.now();
         this.used = false;
+
+        return true;
     }
 
 }

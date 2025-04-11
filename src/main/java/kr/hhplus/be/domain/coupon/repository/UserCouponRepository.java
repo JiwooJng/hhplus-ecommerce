@@ -4,5 +4,5 @@ import kr.hhplus.be.domain.coupon.entity.UserCoupon;
 
 public interface UserCouponRepository {
     UserCoupon save(UserCoupon userCoupon);
-    UserCoupon findUserCouponById(Long userId);
+    UserCoupon findCouponById(Long couponId);
 }

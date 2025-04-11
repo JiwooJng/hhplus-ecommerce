@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class Order {
     private Long orderId;
     private Long userId;
-    private Long userCouponId;
+    private Long couponId;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
@@ -25,11 +25,11 @@ public class Order {
     private LocalDateTime createDate;
     private LocalDateTime modifyDate;
 
-    public static Order of(Long userId, Long userCouponId,  BigDecimal orderPrice, BigDecimal discountAmount, BigDecimal totalPrice, OrderStatus status) {
+    public static Order of(Long userId, Long couponId,  BigDecimal orderPrice, BigDecimal discountAmount, BigDecimal totalPrice, OrderStatus status) {
         Order order = new Order();
 
         order.userId = userId;
-        order.userCouponId = userCouponId;
+        order.couponId = couponId;
         order.createDate = LocalDateTime.now();
 
         order.orderPrice = orderPrice;

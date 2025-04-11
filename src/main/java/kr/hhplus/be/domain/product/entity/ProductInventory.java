@@ -30,6 +30,12 @@ public class ProductInventory {
 
     }
 
+    public void checkStock(int amount) {
+        if (this.stock < amount) {
+            throw new RuntimeException();
+        }
+    }
+
     public void deductStock(int amount) {
         if (this.stock < amount) {
             throw new RuntimeException();

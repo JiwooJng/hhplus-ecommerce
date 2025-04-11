@@ -8,12 +8,12 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderList {
+public class OrderProduct {
 
     @Setter
     private Long orderId;
     private Long prodId;
-    private Integer quantity;
+    private Integer amount;
 
     private BigDecimal price;
     private BigDecimal totalPrice;

@@ -21,6 +21,11 @@ public class ProductService {
         return new ProductDTO(product.getProdName(), product.getPrice());
     }
 
+    public void checkStock(Long prodId, int amount) {
+        ProductInventory productInventory = productInventoryRepository.findByProdId(prodId);
+        productInventory.checkStock(amount);
+    }
+
     // 재고 차감
     public void deductStock(Long prodId, int amount) {
         ProductInventory productInventory = productInventoryRepository.findByProdId(prodId);

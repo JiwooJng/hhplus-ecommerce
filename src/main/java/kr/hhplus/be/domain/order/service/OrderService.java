@@ -3,7 +3,7 @@ package kr.hhplus.be.domain.order.service;
 
 import kr.hhplus.be.domain.order.dto.OrderDTO;
 import kr.hhplus.be.domain.order.entity.Order;
-import kr.hhplus.be.domain.order.entity.OrderList;
+import kr.hhplus.be.domain.order.entity.OrderProduct;
 import kr.hhplus.be.domain.order.repository.OrderListRepository;
 import kr.hhplus.be.domain.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class OrderService {
     public Long orderOrder(Order order, OrderDTO orderDTO) {
         Order ordered = orderRepository.save(order);
 
-        for (OrderList orderList: orderDTO.getOrderLists()) {
+        for (OrderProduct orderList: orderDTO.getOrderProducts()) {
             orderList.setOrderId(ordered.getOrderId());
             orderListRepository.save(orderList);
         }
@@ -37,9 +37,9 @@ public class OrderService {
     // 주문 정보 조회
     public OrderDTO getOrderInfo(Long orderId) {
         Order order = orderRepository.findByOrderId(orderId);
-        List<OrderList> orderLists = orderListRepository.findByOrderId(orderId);
+        List<OrderProduct> orderProducts = orderListRepository.findByOrderId(orderId);
 
-        return new OrderDTO(order.getOrderId(), order.getUserId(), orderLists,
+        return new OrderDTO(order.getOrderId(), order.getUserId(), orderProducts,
                             order.getOrderPrice(), order.getDiscountAmount(), order.getTotalPrice());
 
     }

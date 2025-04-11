@@ -22,9 +22,15 @@ public class CouponService {
     private final UserCouponRepository userCouponRepository;
 
     // 유저 쿠폰 조회
-    public UserCouponDTO getUserCoupon(Long userId) {
-        UserCoupon userCoupon = userCouponRepository.findUserCouponById(userId);
-        return new UserCouponDTO(userId, userCoupon.getCouponId());
+    public UserCouponDTO getUserCoupon(Long couponId) {
+        UserCoupon userCoupon = userCouponRepository.findCouponById(couponId);
+        return new UserCouponDTO(userCoupon.getUserId(), userCoupon.getCouponId());
+    }
+
+    // 쿠폰 할인 금액 조회
+    public BigDecimal getDiscountAmount (Long couponId) {
+        Coupon coupon = couponRepository.findByCouponId(couponId);
+        return coupon.getDiscountAmount();
     }
 
     // 시스템상 쿠폰 등록
@@ -52,15 +58,20 @@ public class CouponService {
     }
 
     // 쿠폰 사용
-    public void useCoupon(Long userCouponId) {
-        UserCoupon userCoupon = userCouponRepository.findUserCouponById(userCouponId);
-        userCoupon.use();
+    public boolean useCoupon(Long couponId) {
+        UserCoupon userCoupon = userCouponRepository.findCouponById(couponId);
+        boolean ret = userCoupon.use();
+
+        if (!ret) {
+            return false;
+        }
         userCouponRepository.save(userCoupon);
+        return true;
     }
 
     // 쿠폰 적용 결제 시 금액 계산
-    public BigDecimal calcCouponDiscount(Long userCouponId, BigDecimal totalAmount) {
-        UserCoupon userCoupon = userCouponRepository.findUserCouponById(userCouponId);
+    public BigDecimal calcCouponDiscount(Long couponId, BigDecimal totalAmount) {
+        UserCoupon userCoupon = userCouponRepository.findCouponById(couponId);
         Coupon coupon = couponRepository.findByCouponId(userCoupon.getCouponId());
 
         BigDecimal discountAmount = totalAmount.subtract(coupon.getDiscountAmount());

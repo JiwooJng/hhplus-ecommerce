@@ -1,13 +1,12 @@
 package kr.hhplus.be.application.payment;
 
 import kr.hhplus.be.domain.order.dto.OrderDTO;
-import kr.hhplus.be.domain.order.entity.OrderList;
+import kr.hhplus.be.domain.order.entity.OrderProduct;
 import kr.hhplus.be.domain.order.service.OrderService;
 import kr.hhplus.be.domain.payment.entity.Payment;
 import kr.hhplus.be.domain.payment.service.PaymentService;
 import kr.hhplus.be.domain.point.service.PointService;
 import kr.hhplus.be.domain.product.service.ProductService;
-import kr.hhplus.be.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,8 +42,8 @@ public class PaymentFacade {
 
         // 재고 차감
         OrderDTO orderDTO = orderService.getOrderInfo(orderId);
-        for (OrderList orderList: orderDTO.getOrderLists()) {
-            productService.deductStock(orderList.getProdId(), orderList.getQuantity());
+        for (OrderProduct orderProduct : orderDTO.getOrderProducts()) {
+            productService.deductStock(orderProduct.getProdId(), orderProduct.getAmount());
         }
 
         return payment;
